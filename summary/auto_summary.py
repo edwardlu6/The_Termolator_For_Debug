@@ -317,7 +317,20 @@ def run_summary(): #runs the bash script for generating the summary.
             termolator_dir,
             'True']))
     elif lang_acronym == 'fr':
-        os.system(termolator_dir +'/run_termolator_fr.sh '+ subclass + ' ' + superclasses[0] + ' ' + subclass + '' +' True True True 30000 5000 '+ termolator_dir + ' ' + termolator_dir + '/TreeTaggerLinux -1')
+        subprocess.run([
+            termolator_dir + '/run_termolator_fr.sh',
+            subclass,
+            superclasses[0],
+            subclass,
+            'True',
+            'True',
+            'True',
+            '30000',
+            '5000',
+            termolator_dir,
+            termolator_dir + '/TreeTaggerLinux',
+            '-1'
+        ], check=True)
         os.system('python3 ' + termolator_dir +'/modified_symlink.py ' + './')
 
     else:
